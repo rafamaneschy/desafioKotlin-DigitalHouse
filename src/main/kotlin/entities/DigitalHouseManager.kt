@@ -2,10 +2,12 @@ package entities
 
 class DigitalHouseManager(val cnpj:String,val cidade:String):RegistrosDigitalHouse {
 
+
     var cursosDigitalHouse = mutableListOf<Curso>()
     var professoresDigitalHouse = mutableListOf<Professor>()
     var alunosDigitalHouse = mutableListOf<Aluno>()
     var matriculasDigitalHouse = mutableListOf<Matricula>()
+
 
     override fun registrarCurso(codigo:Int, nome:String,qtdMaximaDeAlunos:Int) {
         var curso = Curso(codigo,nome,qtdMaximaDeAlunos)
@@ -13,10 +15,51 @@ class DigitalHouseManager(val cnpj:String,val cidade:String):RegistrosDigitalHou
     }
 
     override fun excluirCurso(codigo: Int) {
-        cursosDigitalHouse.forEach(){ it.codigo == codigo }
-        
+        if (this.cursosDigitalHouse.contains(Curso(codigo))) {
+            this.cursosDigitalHouse.remove(Curso(codigo))
+        } else "Esse Curso não está na lista"
 
     }
-//    cursosDigitalHouse.filter{ it.codigo == codigo }
+
+    override fun registrarProfessorAdjunto(horasDeMonitoria:String, codigo: Int, nome: String,
+                                           sobrenome: String,tempoDeCasa: Int) {
+        var professorAdjunto = ProfessorAdjunto(horasDeMonitoria,codigo,nome,sobrenome,tempoDeCasa)
+        this.professoresDigitalHouse.add(professorAdjunto)
+    }
+
+    override fun registrarProfessorTitular(especialidade: String, codigo: Int, nome: String,
+                                           sobrenome: String, tempoDeCasa: Int,) {
+        var professorTitular = ProfessorAdjunto(especialidade,codigo,nome,sobrenome,tempoDeCasa)
+        this.professoresDigitalHouse.add(professorTitular)
+    }
+
+    override fun excluirProfessor(codigo: Int) {
+        if (this.professoresDigitalHouse.contains(Professor(codigo))) {
+            this.professoresDigitalHouse.remove(Professor(codigo))
+        } else "Esse Professor não está na lista"
+    }
+
+    // TODO: 02/09/2021
+    override fun alocarProfessores() {
+        super.alocarProfessores()
+    }
+
+    override fun RegistrarAluno(codigo: Int, nome: String, sobrenome: String) {
+        var aluno = Aluno(codigo,nome,sobrenome)
+        this.alunosDigitalHouse.add(aluno)
+    }
+
+    override fun MatricularAluno(codigoAluno: Int, codigoCurso: Int) {
+        if ( this.alunosDigitalHouse.contains(Aluno(codigoAluno)) &&
+             this.cursosDigitalHouse.contains(Curso(codigoCurso)) )
+        {
+            var matricula = Matricula(Aluno(codigoAluno), Curso(codigoCurso))
+            this.matriculasDigitalHouse.add(matricula)
+            println("Matrícula Realizada")
+
+        } else "Sua matrícula não pode ser realizada"
+    }
 
 }
+
+

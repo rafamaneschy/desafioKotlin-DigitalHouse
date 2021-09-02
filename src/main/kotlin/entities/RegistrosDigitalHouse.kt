@@ -13,14 +13,16 @@ interface RegistrosDigitalHouse {
 
 
     //Funções referente aos professores
-    fun registrarProfessorAdjunto(){
+    fun registrarProfessorAdjunto(horasDeMonitoria:String, codigo: Int, nome: String, sobrenome: String,
+                                  tempoDeCasa: Int){
 
     }
-    fun registrarProfessorTitular(){
+    fun registrarProfessorTitular(especialidade:String,codigo: Int,nome: String,sobrenome: String,
+                                  tempoDeCasa: Int){
 
     }
 
-    fun excluirProfessor(){
+    fun excluirProfessor(codigo: Int){
 
     }
     fun alocarProfessores(){
@@ -29,11 +31,11 @@ interface RegistrosDigitalHouse {
 
 
     //Funções referente aos alunos
-    fun RegistrarAluno(){
+    fun RegistrarAluno(codigo: Int, nome: String, sobrenome: String){
 
 
     }
-    fun MatricularAluno(){
+    fun MatricularAluno(codigoAluno: Int,codigoCurso: Int){
 
     }
 

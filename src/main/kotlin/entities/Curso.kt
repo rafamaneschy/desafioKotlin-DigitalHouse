@@ -1,16 +1,18 @@
 package entities
 
-class Curso( val codigo: Int, var nome: String, var qtdMaximaDeAlunos: Int,) {
+class Curso(val codigo: Int) {
 
-    constructor(
-        codigo: Int, nome: String, qtdMaximaDeAlunos: Int,
-        professorTitular: ProfessorTitular, professorAdjunto: ProfessorAdjunto
-    ) : this(codigo, nome,qtdMaximaDeAlunos)
+    constructor(codigo: Int, nome: String, qtdMaximaDeAlunos: Int,) : this(codigo)
 
-   var listaDeAlunosDoCurso = mutableListOf<Aluno>()
+    constructor(codigo: Int, nome: String, qtdMaximaDeAlunos: Int,professorTitular: ProfessorTitular,
+                professorAdjunto: ProfessorAdjunto) : this(codigo, nome,qtdMaximaDeAlunos)
+
+    var nome:String? = null
+    var qtdMaximaDeAlunos:Int = 0
+    var listaDeAlunosDoCurso = mutableListOf<Aluno>()
 
 
-    fun adicionarUmAluno(aluno: Aluno):Boolean {
+   fun adicionarUmAluno(aluno: Aluno):Boolean {
         var cont = 0
         for (alunos in listaDeAlunosDoCurso) cont++
         return cont<qtdMaximaDeAlunos

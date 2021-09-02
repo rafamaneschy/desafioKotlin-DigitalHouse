@@ -1,12 +1,21 @@
 package teste
 
+import entities.Aluno
+import entities.ProfessorAdjunto
+import entities.ProfessorTitular
 
+class Curso(val codigo: Int) {
 
-class CursoTeste(val codigo: Int, var nome: String, var qtdMaximaDeAlunos: Int,){
+    constructor(codigo: Int, nome: String, qtdMaximaDeAlunos: Int,) : this(codigo)
 
-}
+    constructor(
+        codigo: Int, nome: String, qtdMaximaDeAlunos: Int,
+        professorTitular: ProfessorTitular, professorAdjunto: ProfessorAdjunto
+    ) : this(codigo, nome,qtdMaximaDeAlunos)
 
-
+    var nome:String? = null
+    val qtdMaximaDeAlunos:Int = 0
+    var listaDeAlunosDoCurso = mutableListOf<Aluno>()
 
 fun main() {
     var qtdMaximaDeAlunos: Int = 3
@@ -18,5 +27,5 @@ fun main() {
         return cont<qtdMaximaDeAlunos
     }
 
-    println(adicionarUmAluno())
+}
 }
