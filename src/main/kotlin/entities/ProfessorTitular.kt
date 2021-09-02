@@ -2,10 +2,10 @@ package entities
 
 class ProfessorTitular(
     var especialidade:String,
-    id: Int,
+    codigo: Int,
     nome: String,
     sobrenome: String,
-    tempoDeCasa: Int) : Professor(id, nome, sobrenome, tempoDeCasa) {
+    tempoDeCasa: Int) : Professor(codigo, nome, sobrenome, tempoDeCasa) {
 
 
 }

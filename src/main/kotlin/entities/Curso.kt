@@ -1,26 +1,33 @@
 package entities
 
-class Curso(
-    val id: Int,
-    var nome: String,
-    )
-{
-    constructor(id: Int,nome: String, professorAdjunto: ProfessorAdjunto,
-                professorTitular: ProfessorTitular) : this(id, nome)
+class Curso( val codigo: Int, var nome: String, var qtdMaximaDeAlunos: Int,) {
+
+    constructor(
+        codigo: Int, nome: String, qtdMaximaDeAlunos: Int,
+        professorTitular: ProfessorTitular, professorAdjunto: ProfessorAdjunto
+    ) : this(codigo, nome,qtdMaximaDeAlunos)
+
+   var listaDeAlunosDoCurso = mutableListOf<Aluno>()
+
+
+    fun adicionarUmAluno(aluno: Aluno):Boolean {
+        var cont = 0
+        for (alunos in listaDeAlunosDoCurso) cont++
+        return cont<qtdMaximaDeAlunos
+    }
+
+    fun excluirAluno(aluno: Aluno){
+        if (aluno in listaDeAlunosDoCurso) listaDeAlunosDoCurso.remove(aluno)
+        else println("Aluno não está no curso")
+    }
+
 
     override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Curso
-
-        if (id != other.id) return false
-
-        return true
+        return (other is Curso && other.codigo == this.codigo)
     }
 
     override fun hashCode(): Int {
-        return id
+        return this.codigo
     }
 
     override fun toString(): String {
@@ -29,3 +36,5 @@ class Curso(
 
 
 }
+
+
