@@ -25,17 +25,17 @@ interface RegistrosDigitalHouse {
     fun excluirProfessor(codigo: Int){
 
     }
-    fun alocarProfessores(){
+    fun alocarProfessores(codigoCurso: Int, codigoProfessorTitular: Int, codigoProfessorAdjunto: Int){
 
     }
 
 
     //Funções referente aos alunos
-    fun RegistrarAluno(codigo: Int, nome: String, sobrenome: String){
+    fun registrarAluno(codigo: Int, nome: String, sobrenome: String){
 
 
     }
-    fun MatricularAluno(codigoAluno: Int,codigoCurso: Int){
+    fun matricularAluno(codigoAluno: Int,codigoCurso: Int){
 
     }
 

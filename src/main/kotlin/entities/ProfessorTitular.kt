@@ -1,6 +1,6 @@
 package entities
 
-class ProfessorTitular(var especialidade:String,codigo: Int,nome: String,sobrenome: String,
+class ProfessorTitular(codigo: Int,nome: String,sobrenome: String, var especialidade:String,
                        tempoDeCasa: Int) : Professor(codigo, nome, sobrenome, tempoDeCasa) {
 
 

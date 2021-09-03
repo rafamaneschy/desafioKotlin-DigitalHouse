@@ -2,24 +2,31 @@ package entities
 
 class Curso(val codigo: Int) {
 
-    constructor(codigo: Int, nome: String, qtdMaximaDeAlunos: Int,) : this(codigo)
-
-    constructor(codigo: Int, nome: String, qtdMaximaDeAlunos: Int,professorTitular: ProfessorTitular,
-                professorAdjunto: ProfessorAdjunto) : this(codigo, nome,qtdMaximaDeAlunos)
-
     var nome:String? = null
     var qtdMaximaDeAlunos:Int = 0
-    var listaDeAlunosDoCurso = mutableListOf<Aluno>()
+
+    constructor(codigo: Int, nome: String, qtdMaximaDeAlunos: Int,) : this(codigo){
+        this.nome = nome
+        this.qtdMaximaDeAlunos = qtdMaximaDeAlunos
+    }
+
+    constructor(codigo: Int, nome: String, qtdMaximaDeAlunos: Int,professorTitular: ProfessorTitular,
+                professorAdjunto: ProfessorAdjunto) : this(codigo, nome,qtdMaximaDeAlunos){
+
+                }
+
+
+    var listaDeAlunosMatriculados = mutableListOf<Aluno>()
 
 
    fun adicionarUmAluno(aluno: Aluno):Boolean {
         var cont = 0
-        for (alunos in listaDeAlunosDoCurso) cont++
+        for (alunos in listaDeAlunosMatriculados) cont++
         return cont<qtdMaximaDeAlunos
     }
 
     fun excluirAluno(aluno: Aluno){
-        if (aluno in listaDeAlunosDoCurso) listaDeAlunosDoCurso.remove(aluno)
+        if (listaDeAlunosMatriculados.contains(aluno)) listaDeAlunosMatriculados.remove(aluno)
         else println("Aluno não está no curso")
     }
 
@@ -33,7 +40,7 @@ class Curso(val codigo: Int) {
     }
 
     override fun toString(): String {
-        return "$nome"
+        return "Curso: cod.$codigo $nome"
     }
 
 
