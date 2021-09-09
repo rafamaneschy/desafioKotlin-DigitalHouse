@@ -54,20 +54,18 @@ class DigitalHouseManager(val cnpj:String,val cidade:String):RegistrosDigitalHou
     }
 
     override fun matricularAluno(codigoAluno: Int, codigoCurso: Int) {
-        if ( this.alunosDigitalHouse.contains(Aluno(codigoAluno)) &&
-             this.cursosDigitalHouse.contains(Curso(codigoCurso)) &&
-             Curso(codigoCurso).adicionarUmAluno(Aluno(codigoAluno)) )
-        {
-              var matricula = Matricula(Aluno(codigoAluno), Curso(codigoCurso))
+
+        if (Curso(codigoCurso).adicionarUmAluno(Aluno(codigoAluno))) {
+            if (this.alunosDigitalHouse.contains(Aluno(codigoAluno)) &&
+                this.cursosDigitalHouse.contains(Curso(codigoCurso))
+            ) {
+                var matricula = Matricula(Aluno(codigoAluno), Curso(codigoCurso))
                 this.matriculasDigitalHouse.add(matricula)
-                println("Matrícula Realizada")
+                println("Matrícula Realizada!!")
 
-
-        } else {
-            "Sua matrícula não pode ser realizada"
-        }
+            } else { "Sua matrícula não pode ser realizada" }
+        } else { "Não há vagas nesse curso" }
     }
-
 }
 
 

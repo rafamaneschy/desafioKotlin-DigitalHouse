@@ -2,7 +2,7 @@ package entities
 
 class Aluno(val codigo: Int){
 
-    var nome:String?=null
+    var nome:String?= null
     var sobrenome:String?=null
 
     constructor(codigo: Int, nome: String, sobrenome: String):this(codigo){
@@ -19,7 +19,7 @@ class Aluno(val codigo: Int){
     }
 
     override fun toString(): String {
-        return "Aluno: cod.$codigo $nome $sobrenome"
+        return "Aluno: cod.$codigo ${this.nome} ${this.sobrenome}"
     }
 
 }

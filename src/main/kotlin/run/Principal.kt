@@ -1,9 +1,6 @@
 package run
 
-import entities.Aluno
-import entities.Curso
-import entities.DigitalHouseManager
-import entities.ProfessorTitular
+import entities.*
 
 class Principal {
 
@@ -18,19 +15,26 @@ fun main() {
                                                  "Full Stack",5)
 
     escolaDigitalHouse.registrarProfessorTitular(13,"José","Araújo",
-        "Android",6)
+                                                  "Android",6)
 
     println(escolaDigitalHouse.professoresDigitalHouse)
 
     escolaDigitalHouse.registrarCurso(20001,"Full Stack",3)
-    escolaDigitalHouse.registrarCurso(20001,"Full Stack",3)
+    escolaDigitalHouse.registrarCurso(20002,"Android",2)
+
 
     println(escolaDigitalHouse.cursosDigitalHouse)
 
     escolaDigitalHouse.registrarAluno(20014,"Felipe", "Santos")
     escolaDigitalHouse.registrarAluno(20015,"Leonardo", "Pina")
 
-    escolaDigitalHouse.matricularAluno(20014,20001)
+    println(escolaDigitalHouse.alunosDigitalHouse)
+
+    escolaDigitalHouse.excluirProfessor(13)
+
+    println(escolaDigitalHouse.professoresDigitalHouse)
+
+    escolaDigitalHouse.matricularAluno(20014,20002)
 
     println(escolaDigitalHouse.matriculasDigitalHouse)
 
