@@ -1,71 +1,123 @@
 package entities
 
-class DigitalHouseManager(val cnpj:String,val cidade:String):RegistrosDigitalHouse {
+class DigitalHouseManager(val cnpj:String,val cidade:String) {
+
+    var cursosDigitalHouse: MutableList<Curso> = mutableListOf<Curso>()
+    var professoresDigitalHouse: MutableList<Professor> = mutableListOf<Professor>()
+    var alunosDigitalHouse: MutableList<Aluno> = mutableListOf<Aluno>()
+    var matriculasDigitalHouse: MutableList<Matricula> = mutableListOf<Matricula>()
 
 
-    var cursosDigitalHouse = mutableListOf<Curso>()
-    var professoresDigitalHouse = mutableListOf<Professor>()
-    var alunosDigitalHouse = mutableListOf<Aluno>()
-    var matriculasDigitalHouse = mutableListOf<Matricula>()
+    //************** FUNÇÕES REFERENTE AOS CURSOS DA ESCOLA *******************//
 
+    //Função usada para encontrar um Curso através do seu índice na lista
+    fun encontrarCurso(codigoCurso: Int):Int {
+        var indiceCurso = -1
+        for (codigoCurso in cursosDigitalHouse) indiceCurso++
+        return indiceCurso
+    }
 
-    override fun registrarCurso(codigo:Int, nome:String,qtdMaximaDeAlunos:Int) {
-        var curso = Curso(codigo,nome,qtdMaximaDeAlunos)
-        this.cursosDigitalHouse.add(curso)
+    //Função usada para registrar um Curso na escola
+    fun registrarCurso(codigo: Int, nome: String, qtdMaximaDeAlunos: Int) {
+        try {
+            var curso = Curso(codigo, nome, qtdMaximaDeAlunos)
+            cursosDigitalHouse.add(curso)
+            println("Curso ** $nome ** Registrado com sucesso!!")
+        } catch (ex: Exception) { println ("Erro registrar curso")}
+    }
+
+    //Função usada para excluir um Curso na escola
+    fun excluirCurso(codigo: Int) {
+        try {
+            var cont = -1
+            for (codigo in cursosDigitalHouse) cont++
+            cursosDigitalHouse.removeAt(cont)
+            println("Curso excluído com sucesso!!")
+        } catch (ex: Exception) { println ("Erro excluir curso")}
     }
 
 
-    override fun excluirCurso(codigo: Int) {
-        if (this.cursosDigitalHouse.contains(Curso(codigo))) {
-            this.cursosDigitalHouse.remove(Curso(codigo))
-        } else "Esse Curso não está na lista"
+    //************** FUNÇÕES REFERENTE AOS PROFESSORES DA ESCOLA *******************//
+
+    //Função usada para encontrar um Professor através do seu índice na lista
+    fun encontrarProfessor(codigoProfessor:Int):Int{
+        var indiceProfessor = -1
+        for (codigoProfessor in professoresDigitalHouse) indiceProfessor++
+        return indiceProfessor
+    }
+
+    fun registrarProfessorAdjunto(codigo: Int,nome: String,sobrenome: String,tempoDeCasa: Int,horasDeMonitoria: Int) {
+        try {
+            var professorAdjunto = ProfessorAdjunto(codigo, nome, sobrenome, tempoDeCasa, horasDeMonitoria)
+            this.professoresDigitalHouse.add(professorAdjunto)
+            println("Professor Adjunto ** $nome $sobrenome ** registrado com sucesso!!")
+        } catch (ex: Exception) { println ("Erro registrar prof.Adjunto")}
+    }
+
+
+    fun registrarProfessorTitular(codigo: Int,nome: String,sobrenome: String,tempoDeCasa: Int,especialidade: String) {
+        try {
+            var professorTitular = ProfessorTitular(codigo, nome, sobrenome, tempoDeCasa, especialidade)
+            this.professoresDigitalHouse.add(professorTitular)
+            println("Professor Titular ** $nome $sobrenome ** registrado com sucesso!!")
+        } catch (ex: Exception) { println ("Erro registrar prof.Titular")}
+    }
+
+    fun excluirProfessor(codigo: Int) {
+        try {
+            var cont = -1
+            for (codigo in professoresDigitalHouse) cont++
+            professoresDigitalHouse.removeAt(cont)
+            println("Professor excluído com sucesso!!")
+        } catch (ex: Exception) { println ("Erro excluir professor")}
+    }
+
+
+    fun alocarProfessor(codigoCurso: Int, codigoTitular: Int, codigoAdjunto: Int){
+        var professorTitular = professoresDigitalHouse[encontrarProfessor(codigoTitular)]
+        var professorAdjunto = professoresDigitalHouse[encontrarProfessor(codigoAdjunto)]
+        var curso = cursosDigitalHouse[encontrarCurso(codigoCurso)]
+
+        try {
+            curso.professorTitular = professorTitular as ProfessorTitular
+            curso.professorAdjunto = professorAdjunto as ProfessorAdjunto
+            println("Professor alocado com sucesso!!")
+        } catch (ex: Exception) { println ("Erro alocar professor")}
+
 
     }
 
-    override fun registrarProfessorAdjunto(horasDeMonitoria:String, codigo: Int, nome: String,
-                                           sobrenome: String,tempoDeCasa: Int) {
-        var professorAdjunto = ProfessorAdjunto(horasDeMonitoria,codigo,nome,sobrenome,tempoDeCasa)
-        this.professoresDigitalHouse.add(professorAdjunto)
+
+    //************** FUNÇÕES REFERENTE AOS ALUNOS DA ESCOLA *******************//
+
+    fun encontrarAluno(codigoAluno: Int): Int {
+        var indiceAluno = -1
+        for (codigoAluno in alunosDigitalHouse) indiceAluno++
+        return indiceAluno
     }
 
-    fun registrarProfessorTitular(codigo: Int, nome: String,sobrenome: String,
-                                           especialidade: String, tempoDeCasa: Int,) {
-        var professorTitular = ProfessorTitular(codigo,nome,sobrenome,especialidade,tempoDeCasa)
-        this.professoresDigitalHouse.add(professorTitular)
+    fun registrarAluno(codigo: Int, nome: String, sobrenome: String) {
+        try {
+            var aluno = Aluno(codigo, nome, sobrenome)
+            alunosDigitalHouse.add(aluno)
+            println("Aluno ** $nome $sobrenome ** registrado com sucesso!!")
+        } catch (ex: Exception) { println ("Erro registrar Aluno")}
     }
 
-    override fun excluirProfessor(codigo: Int) {
-        if (this.professoresDigitalHouse.contains(Professor(codigo))) {
-            this.professoresDigitalHouse.remove(Professor(codigo))
-        } else "Esse Professor não está na lista"
+    fun matricularAluno(codigoAluno: Int, codigoCurso: Int) {
+        var aluno = alunosDigitalHouse[encontrarAluno(codigoAluno)]
+        var curso = cursosDigitalHouse[encontrarCurso(codigoCurso)]
+
+        if (curso.adicionarUmAluno(aluno)){
+            var matricula = Matricula(aluno,curso)
+            matriculasDigitalHouse.add(matricula)
+            println("Matrícula realizada")
+        }else println("Não ha vagas nesse curso")
     }
 
-    // TODO: 02/09/2021
-    override fun alocarProfessores(codigoCurso: Int, codigoProfessorTitular: Int, codigoProfessorAdjunto: Int) {
-        this.professoresDigitalHouse.contains(Professor(codigoProfessorTitular))
-        this.professoresDigitalHouse.contains(Professor(codigoProfessorAdjunto))
-        this.cursosDigitalHouse.contains(Curso(codigoCurso))
 
+    override fun toString(): String {
+        return "================== ESCOLA DIGITAL HOUSE - cnpj $cnpj - $cidade =================="
     }
 
-    override fun registrarAluno(codigo: Int, nome: String, sobrenome: String) {
-        var aluno = Aluno(codigo,nome,sobrenome)
-        this.alunosDigitalHouse.add(aluno)
-    }
-
-    override fun matricularAluno(codigoAluno: Int, codigoCurso: Int) {
-
-        if (Curso(codigoCurso).adicionarUmAluno(Aluno(codigoAluno))) {
-            if (this.alunosDigitalHouse.contains(Aluno(codigoAluno)) &&
-                this.cursosDigitalHouse.contains(Curso(codigoCurso))
-            ) {
-                var matricula = Matricula(Aluno(codigoAluno), Curso(codigoCurso))
-                this.matriculasDigitalHouse.add(matricula)
-                println("Matrícula Realizada!!")
-
-            } else { "Sua matrícula não pode ser realizada" }
-        } else { "Não há vagas nesse curso" }
-    }
 }
-
-

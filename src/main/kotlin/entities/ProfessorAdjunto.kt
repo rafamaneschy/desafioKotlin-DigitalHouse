@@ -1,8 +1,8 @@
 package entities
 
-class ProfessorAdjunto(var horasDeMonitoria:String, codigo: Int, nome: String, sobrenome: String,
-                       tempoDeCasa: Int) : Professor(codigo, nome, sobrenome, tempoDeCasa) {
-
+class ProfessorAdjunto( codigo: Int, nome: String, sobrenome: String,
+                        tempoDeCasa: Int, var horasDeMonitoria:Int,)
+    : Professor(codigo, nome, sobrenome, tempoDeCasa) {
 
 
 }
