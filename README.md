@@ -3,4 +3,4 @@
 
 ## 1. Criação do diagrama de classe UML referente a atividade
 
-![alt text](https://github.com/rafamaneschy/desafioKotlin-DigitalHouse/blob/main/UML/DiagramaUML-DesafioKotlinDH.drawio.png)
+![alt text](https://github.com/rafamaneschy/desafioKotlin-DigitalHouse/blob/main/UML/DesafioKotlinDH.drawio.png)
