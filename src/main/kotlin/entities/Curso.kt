@@ -1,9 +1,5 @@
 package entities
 
-/*
-* @author Rafael Maneschy
-* */
-
 class Curso(val codigo: Int,var nome: String,var qtdMaximaDeAlunos:Int=0) {
 
 

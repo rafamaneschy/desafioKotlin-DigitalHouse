@@ -36,9 +36,9 @@ fun main() {
     println("...............Registrando cursos")
 
     //Registrar 2 Cursos
-    var cursoFullStack =  escolaDigitalHouse.registrarCurso(20001,"Full Stack",3)
+    var cursoFullStack =  escolaDigitalHouse.registrarCurso(20001,"Full Stack",5)
 
-    var cursoAndroid = escolaDigitalHouse.registrarCurso(20002,"Android",2)
+    var cursoAndroid = escolaDigitalHouse.registrarCurso(20002,"Android",5)
         println()
     println("================ Cursos Digital House=====================")
     println(escolaDigitalHouse.cursosDigitalHouse)

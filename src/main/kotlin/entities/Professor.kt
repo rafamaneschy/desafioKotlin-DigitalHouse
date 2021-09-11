@@ -1,9 +1,5 @@
 package entities
 
-/*
-* @author Rafael Maneschy
-* */
-
 open class Professor(val codigo: Int,var nome: String, var sobrenome: String,var tempoDeCasa: Int=0) {
 
 
